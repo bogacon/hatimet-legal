@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Hatim Et — Gizlilik ve Destek</title>
+<style>
+  :root {
+    color-scheme: light dark;
+    --bg: #F7F5F0;
+    --ink: #16241D;
+    --ink2: #4A5A50;
+    --accent: #0F3D33;
+    --card: #FFFFFF;
+    --border: #E2DDD0;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #10201A;
+      --ink: #F3F1EA;
+      --ink2: #A9BDB2;
+      --accent: #7FBFA8;
+      --card: #16281F;
+      --border: #24382E;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    line-height: 1.6;
+  }
+  main {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+  h1 { font-size: 28px; margin-bottom: 4px; }
+  p.tagline { color: var(--ink2); margin-top: 0; }
+  .card {
+    display: block;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 20px 22px;
+    margin-top: 16px;
+    text-decoration: none;
+    color: inherit;
+  }
+  .card h2 { margin: 0 0 6px; font-size: 18px; color: var(--accent); }
+  .card p { margin: 0; color: var(--ink2); font-size: 14px; }
+  footer { margin-top: 40px; color: var(--ink2); font-size: 13px; }
+  a { color: var(--accent); }
+</style>
+</head>
+<body>
+<main>
+  <h1>Hatim Et</h1>
+  <p class="tagline">Kur’an okuma, hatim takibi, namaz vakitleri ve zikirmatik uygulaması.</p>
+
+  <a class="card" href="privacy.html">
+    <h2>Gizlilik Politikası</h2>
+    <p>Hangi verilerin cihazda, hangilerinin buluta bağlı hesapta işlendiği.</p>
+  </a>
+
+  <a class="card" href="support.html">
+    <h2>Destek</h2>
+    <p>Teknik destek, hesap işlemleri ve içerik bildirimi.</p>
+  </a>
+
+  <footer>
+    İletişim: <a href="mailto:bogacondalikoglu@gmail.com">bogacondalikoglu@gmail.com</a>
+  </footer>
+</main>
+</body>
+</html>

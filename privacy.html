@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Hatim Et — Gizlilik Politikası</title>
+<style>
+  :root {
+    color-scheme: light dark;
+    --bg: #F7F5F0;
+    --ink: #16241D;
+    --ink2: #4A5A50;
+    --accent: #0F3D33;
+    --card: #FFFFFF;
+    --border: #E2DDD0;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #10201A;
+      --ink: #F3F1EA;
+      --ink2: #A9BDB2;
+      --accent: #7FBFA8;
+      --card: #16281F;
+      --border: #24382E;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    line-height: 1.65;
+  }
+  main { max-width: 680px; margin: 0 auto; padding: 40px 24px 96px; }
+  a.back { color: var(--ink2); text-decoration: none; font-size: 14px; }
+  h1 { font-size: 26px; margin: 16px 0 4px; }
+  .meta { color: var(--ink2); font-size: 14px; margin-bottom: 24px; }
+  h2 { font-size: 18px; color: var(--accent); margin-top: 32px; }
+  ul { padding-left: 20px; }
+  li { margin-bottom: 6px; }
+  strong { color: var(--ink); }
+  a { color: var(--accent); }
+  .contact {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 18px;
+    margin: 20px 0 8px;
+    font-size: 15px;
+  }
+</style>
+</head>
+<body>
+<main>
+  <a class="back" href="index.html">&larr; Hatim Et</a>
+  <h1>Hatim Et Gizlilik Politikası</h1>
+  <p class="meta">Yürürlük tarihi: 2 Ağustos 2026 &middot; Son güncelleme: 10 Ağustos 2026</p>
+
+  <p>Hatim Et, Kur’an okuma ve hatim takibi, namaz vakitleri, kıble, dua, zikirmatik ve
+  grup hatmi araçları sunan bir mobil uygulamadır. Temel özellikler hesap açmadan ve
+  yerel olarak kullanılabilir.</p>
+
+  <div class="contact">
+    <strong>Veri sorumlusu:</strong> Hatim Et<br />
+    <strong>Destek/iletişim e-postası:</strong>
+    <a href="mailto:bogacondalikoglu@gmail.com">bogacondalikoglu@gmail.com</a>
+  </div>
+
+  <h2>1. Cihazda işlenen veriler</h2>
+  <p>Okuma konumu, favoriler, görünüm tercihleri, namaz ve hatim takip kayıtları,
+  zikirmatik geçmişi ve benzeri kişisel kayıtlar varsayılan olarak cihazdaki SQLite
+  veritabanında tutulur. Kullanıcı bunları uygulama içinden dışa aktarabilir veya
+  silebilir.</p>
+  <p>Mikrofon ve konuşma tanıma yalnızca kullanıcının açık isteğiyle Kur’an okuma
+  takibinde kullanılır. Ham ses kaydedilmez ve Hatim Et ya da Supabase sunucusuna
+  gönderilmez.</p>
+
+  <h2>2. Bulut hesabı açıldığında</h2>
+  <p>Kullanıcı isteğe bağlı bulut hesabı açarsa aşağıdaki veriler Supabase üzerinde
+  hesap kimliğiyle bağlantılı olarak işlenebilir:</p>
+  <ul>
+    <li>e-posta adresi, hesap kimliği ve giriş sağlayıcısı;</li>
+    <li>isteğe bağlı profil adı, profil simgesi ve şehir;</li>
+    <li>grup hatmi üyeliği, grup adı/niyeti ve cüz ilerlemesi;</li>
+    <li>topluluk sıralamasına katılım ve uygulama etkinlik puanı;</li>
+    <li>kullanıcı izin verdiğinde, uzaktan bildirim gönderebilmek için hesaba bağlı
+      Expo push tokenı, cihaz platformu ve seçilen uygulama dili;</li>
+    <li>isteğe bağlı cihaz yedeği: uygulama ayarları, hatim/cüz ilerlemesi ve
+      zikirmatik oturumları.</li>
+  </ul>
+  <p>Bu yedekler dinî veya felsefî inançlara ilişkin çıkarım yapılmasına elverişli
+  olabileceği için hassas veri olarak korunur. Reklam, kullanıcı profilleme veya
+  üçüncü taraf pazarlama amacıyla kullanılmaz.</p>
+
+  <h2>3. Konum</h2>
+  <p>Konum izni namaz vakti, kıble ve yakındaki camiler için kullanılır. Kıble ve
+  astronomik yaklaşık vakit hesabı cihazda yapılır. Yakındaki cami aramasında anlık
+  enlem/boylam OpenStreetMap Nominatim hizmetine gönderilir. Hatim Et kendi
+  sunucusunda konum geçmişi oluşturmaz. Kullanıcı konum iznini cihaz ayarlarından
+  istediği zaman kapatabilir.</p>
+
+  <h2>4. Hizmet sağlayıcılar</h2>
+  <ul>
+    <li><strong>Supabase:</strong> isteğe bağlı hesap, kimlik doğrulama, grup verileri
+      ve bulut yedeği.</li>
+    <li><strong>Apple / Google:</strong> kullanıcı seçerse sosyal giriş.</li>
+    <li><strong>Expo Push Service ile Apple Push Notification Service:</strong>
+      kullanıcının izin verdiği uzaktan bildirimleri cihaza ulaştırmak için. Expo
+      bildirim içeriğini teslim süresinden uzun süre saklamaz; teslim bileti ve
+      sonucu Hatim Et'in Supabase veritabanında güvenilirlik takibi için tutulur.</li>
+    <li><strong>OpenStreetMap Nominatim:</strong> yakındaki cami araması.</li>
+    <li><strong>Diyanet'in herkese açık sayfaları ve üçüncü taraf vakit aynası:</strong>
+      namaz vakti verisini almak veya doğrulamak için.</li>
+  </ul>
+  <p>Bu sağlayıcılar kendi gizlilik ve saklama kurallarına göre işlem yapabilir.</p>
+
+  <h2>5. Saklama ve silme</h2>
+  <p>Cihaz kayıtları kullanıcı silene veya uygulamayı kaldırana kadar cihazda kalır.
+  Bulut verileri hesap açık olduğu sürece saklanır. Profil &rarr; Gizlilik ve
+  verilerim &rarr; Hesabımı kalıcı olarak sil adımı Supabase hesabını ve ilişkili
+  profil, grup, sıralama, bildirim ve yedek kayıtlarını siler. Sign in with Apple
+  kullanılmışsa sunucuda saklanan Apple yenileme jetonu önce Apple'ın iptal
+  servisine gönderilir. Eski bir hesapta jeton bulunamazsa uygulama Apple hesabı
+  üzerinden erişimi elle kaldırma yolunu gösterir.</p>
+  <p>Kullanıcı çevrim içiyken çıkış yaptığında o cihazın uzaktan bildirim tokenı
+  devre dışı bırakılır. Apple veya Google bir tokenın artık geçersiz olduğunu
+  bildirirse token tekrar kullanılmaz. Bildirim teslim kayıtları yalnız hata
+  ayıklama ve teslim güvenilirliği amacıyla tutulur.</p>
+
+  <h2>6. Paylaşım, satış ve reklam</h2>
+  <p>Kişisel veri satılmaz. Uygulama kullanıcıları uygulamalar veya internet siteleri
+  arasında takip etmez. Şu anki sürümde reklam SDK'sı yapılandırılmamıştır.
+  Gelecekte reklam eklenirse bu politika, izin akışı ve mağaza gizlilik beyanları
+  yayın öncesinde yeniden güncellenir.</p>
+
+  <h2>7. Güvenlik ve kullanıcı kontrolü</h2>
+  <p>Supabase satır düzeyi güvenlik kuralları kullanıcıların yalnızca kendi özel
+  kayıtlarına erişmesini sağlar. Topluluk sıralaması özel yedek tablosunu açmaz;
+  yalnızca kullanıcı kimliği, görünen ad, şehir, profil simgesi ve etkinlik puanı
+  dar kapsamlı bir sunucu fonksiyonundan döner. Kullanıcı verilerini uygulama
+  içinden dışa aktarabilir, cihaz kayıtlarını silebilir veya hesabını tamamen
+  silebilir.</p>
+
+  <h2>8. Çocuklar</h2>
+  <p>Uygulama çocuklara özel olarak yöneltilmemiştir ve bilerek çocuklardan hesap
+  verisi toplamayı amaçlamaz.</p>
+
+  <h2>9. Değişiklikler ve iletişim</h2>
+  <p>Önemli değişikliklerde yürürlük tarihi güncellenir. Gizlilik, veri silme,
+  içerik bildirimi veya destek talebi için
+  <a href="mailto:bogacondalikoglu@gmail.com">bogacondalikoglu@gmail.com</a>
+  adresine veya mağaza ürün sayfasındaki Support URL'ye yazılabilir.</p>
+</main>
+</body>
+</html>

@@ -117,79 +117,39 @@
   .hero h1 em { font-style: normal; color: var(--emerald); }
   .hero p.lead { margin-top: 20px; font-size: 18px; line-height: 1.6; color: var(--ink2); max-width: 46ch; }
   .hero .basmala { margin-top: 28px; font-size: 15px; color: var(--ink3); direction: rtl; }
-  .badges { display: flex; gap: 14px; margin-top: 34px; flex-wrap: wrap; }
-  .badges a { display: block; height: 52px; }
-  .badges img { height: 100%; width: auto; display: block; }
+  .badges { display: flex; align-items: center; gap: 14px; margin-top: 34px; flex-wrap: wrap; }
+  .badges a { display: flex; align-items: center; height: 54px; }
+  .badges img { height: 54px; width: auto; display: block; }
   .badges .soon {
     font-size: 12px; color: var(--ink3); margin-top: 10px; font-weight: 600;
   }
 
-  .hero-visual { position: relative; display: flex; justify-content: center; }
-  .phone {
-    width: 232px; border-radius: 34px; background: var(--emerald-deep);
-    padding: 10px; box-shadow: 0 30px 60px -18px var(--shadow), 0 0 0 1px color-mix(in srgb, var(--ink) 6%, transparent);
-    transform: rotate(-3deg);
+  .hero-visual { position: relative; display: flex; align-items: center; justify-content: center; min-height: 360px; }
+  .avatar-cluster { position: relative; width: 360px; height: 360px; }
+  .avatar-cluster .mark {
+    position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%);
+    width: 168px; height: 168px; border-radius: 42px;
+    box-shadow: 0 28px 56px -16px var(--shadow);
   }
-  .phone .screen { background: var(--bg); border-radius: 24px; overflow: hidden; aspect-ratio: 9/19.5; position: relative; }
-  .phone-float { position: absolute; width: 168px; border-radius: 26px; background: var(--emerald-deep); padding: 8px;
-    box-shadow: 0 20px 44px -14px var(--shadow); right: -18px; bottom: -8px; transform: rotate(6deg); }
-  .phone-float .screen { border-radius: 19px; }
+  .avatar-cluster .bubble {
+    position: absolute; border-radius: 50%; overflow: hidden;
+    box-shadow: 0 14px 30px -10px var(--shadow);
+    border: 4px solid var(--bg);
+    background: var(--surface);
+  }
+  .avatar-cluster .bubble img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .avatar-cluster .b1 { width: 108px; height: 108px; left: -6px; top: 6px; }
+  .avatar-cluster .b2 { width: 92px; height: 92px; right: -10px; top: 30px; }
+  .avatar-cluster .b3 { width: 96px; height: 96px; left: 14px; bottom: -6px; }
+  .avatar-cluster .b4 { width: 84px; height: 84px; right: 14px; bottom: -18px; }
+  .avatar-cluster .sparkle { position: absolute; color: var(--brass); font-size: 20px; }
+  .avatar-cluster .s1 { top: 4%; right: 22%; }
+  .avatar-cluster .s2 { bottom: 10%; left: 4%; font-size: 15px; }
 
-  /* mini mock UI inside phone screens */
-  .mock-header { padding: 18px 16px 10px; }
-  .mock-header .tag { font-size: 9px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: var(--brass-dark); }
-  .mock-header h4 { font-family: 'Fraunces', serif; font-size: 17px; color: var(--ink); margin-top: 4px; }
-  .mock-verse { margin: 14px 16px; padding: 14px; background: var(--surface); border: 1px solid var(--border); border-radius: 14px; }
-  .mock-verse .ar { direction: rtl; font-size: 17px; line-height: 1.9; color: var(--ink); }
-  .mock-verse .tr { margin-top: 8px; font-size: 11px; color: var(--ink2); }
-  .mock-progress { margin: 0 16px 16px; height: 8px; border-radius: 99px; background: var(--border); overflow: hidden; }
-  .mock-progress i { display: block; height: 100%; width: 63%; background: linear-gradient(90deg, var(--emerald), var(--brass)); }
-  .mock-pill { display: inline-block; margin: 0 16px 14px; font-size: 10px; font-weight: 700; color: var(--emerald); background: color-mix(in srgb, var(--emerald) 12%, transparent); padding: 5px 10px; border-radius: 99px; }
-
-  /* ---------- Flow section ---------- */
-  section.flow { padding: 96px 0 40px; }
   .section-head { text-align: center; max-width: 620px; margin: 0 auto 56px; }
   .section-head .eyebrow { margin-bottom: 16px; }
   .section-head h2 { font-size: clamp(28px, 3.4vw, 38px); color: var(--ink); font-weight: 600; }
   .section-head p { margin-top: 14px; color: var(--ink2); font-size: 16px; line-height: 1.6; }
-
-  .flow-strip {
-    display: grid; grid-auto-flow: column; grid-auto-columns: 240px;
-    gap: 22px; overflow-x: auto; padding: 10px 24px 28px;
-    scroll-snap-type: x proximity;
-  }
-  .flow-strip::-webkit-scrollbar { height: 8px; }
-  .flow-strip::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
-  .flow-card { scroll-snap-align: start; }
-  .flow-card .device {
-    background: var(--emerald-deep); border-radius: 28px; padding: 8px;
-    box-shadow: 0 18px 40px -18px var(--shadow);
-  }
-  .flow-card .device .screen { background: var(--bg); border-radius: 20px; aspect-ratio: 9/17.5; overflow: hidden; position: relative; }
-  .flow-card .caption { padding: 16px 4px 0; text-align: center; }
-  .flow-card .caption b { display: block; font-size: 14px; font-weight: 700; color: var(--ink); }
-  .flow-card .caption span { display: block; font-size: 12.5px; color: var(--ink2); margin-top: 3px; line-height: 1.5; }
-
-  /* small mock variants for the flow strip */
-  .mk-prayer { padding: 16px 12px; }
-  .mk-prayer .row { display: flex; justify-content: space-between; align-items: center; padding: 8px 10px; border-radius: 10px; font-size: 11px; }
-  .mk-prayer .row.now { background: color-mix(in srgb, var(--emerald) 14%, transparent); font-weight: 800; color: var(--emerald); }
-  .mk-prayer .row span:last-child { color: var(--ink2); font-variant-numeric: tabular-nums; }
-  .mk-prayer .row.now span:last-child { color: var(--emerald); }
-  .mk-qibla { display: flex; align-items: center; justify-content: center; height: 100%; }
-  .mk-qibla .dial { width: 92px; height: 92px; border-radius: 50%; border: 3px solid var(--border); position: relative; }
-  .mk-qibla .needle { position: absolute; left: 50%; top: 50%; width: 3px; height: 38px; background: linear-gradient(var(--brass), var(--emerald)); transform-origin: bottom; transform: translate(-50%,-100%) rotate(38deg); border-radius: 4px; }
-  .mk-dhikr { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; gap: 10px; }
-  .mk-dhikr .count { font-family: 'Fraunces', serif; font-size: 40px; font-weight: 600; color: var(--emerald); }
-  .mk-dhikr .ring { width: 100px; height: 100px; border-radius: 50%; background: conic-gradient(var(--emerald) 0deg 260deg, var(--border) 260deg 360deg); display:flex; align-items:center; justify-content:center; }
-  .mk-dhikr .ring i { width: 78px; height: 78px; border-radius: 50%; background: var(--surface); display:flex; align-items:center; justify-content:center; }
-  .mk-board { padding: 16px 12px; }
-  .mk-board .row { display: flex; align-items: center; gap: 8px; padding: 8px 6px; border-bottom: 1px solid var(--border); font-size: 11px; }
-  .mk-board .rank { width: 16px; font-weight: 800; color: var(--brass-dark); }
-  .mk-board .dot { width: 22px; height: 22px; border-radius: 50%; background: linear-gradient(135deg, var(--emerald), var(--brass)); flex-shrink: 0; }
-  .mk-board .name { flex: 1; color: var(--ink); font-weight: 600; }
-  .mk-board .pt { color: var(--ink2); font-variant-numeric: tabular-nums; }
-  .mk-board .row.me { background: color-mix(in srgb, var(--brass) 16%, transparent); border-radius: 8px; }
 
   /* ---------- Download band ---------- */
   section.download {
@@ -273,7 +233,6 @@
       <span>Hatim Et</span>
     </a>
     <div class="links">
-      <a href="#akis">Uygulama</a>
       <a href="#ozellikler">Özellikler</a>
       <a href="#indir">İndir</a>
       <a href="privacy.html">Gizlilik</a>
@@ -298,94 +257,23 @@
           <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/tr-tr?size=250x83" alt="App Store'da indir" />
         </a>
         <a href="#indir" aria-label="Google Play'de yakında">
-          <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Google Play'de edinin" style="height:56px;margin-top:-4px;" />
+          <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Google Play'de edinin" />
         </a>
       </div>
     </div>
     <div class="hero-visual">
-      <div class="phone">
-        <div class="screen">
-          <div class="mock-header">
-            <div class="tag">Kur’an · Bakara Sûresi</div>
-            <h4>2. Sayfa</h4>
-          </div>
-          <div class="mock-verse">
-            <div class="ar">بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيمِ</div>
-            <div class="tr">Bismillâhirrahmânirrahîm</div>
-          </div>
-          <span class="mock-pill">Yer imine eklendi</span>
-          <div class="mock-progress"><i></i></div>
-        </div>
-      </div>
-      <div class="phone-float">
-        <div class="screen">
-          <div class="mk-dhikr" style="padding-top:22px;">
-            <div class="ring"><i><span class="count" style="font-size:22px;">72</span></i></div>
-            <span style="font-size:10px;color:var(--ink2);font-weight:700;">SÜBHANALLAH</span>
-          </div>
-        </div>
+      <div class="avatar-cluster">
+        <span class="sparkle s1">✦</span>
+        <span class="sparkle s2">✦</span>
+        <div class="bubble b1"><img src="avatar-woman.png" alt="" /></div>
+        <div class="bubble b2"><img src="avatar-man.png" alt="" /></div>
+        <div class="bubble b3"><img src="avatar-boy.png" alt="" /></div>
+        <div class="bubble b4"><img src="avatar-girl.png" alt="" /></div>
+        <img class="mark" src="logo.png" alt="Hatim Et" />
       </div>
     </div>
   </div>
 </header>
-
-<section class="flow" id="akis">
-  <div class="wrap">
-    <div class="section-head">
-      <span class="eyebrow">Uygulama içi akış</span>
-      <h2>Beş ekran, tek amaç</h2>
-      <p>Okumaktan zikre, namaz vaktinden topluluk sıralamasına — hepsi aynı sade tasarım dilinde.</p>
-    </div>
-  </div>
-  <div class="flow-strip">
-    <article class="flow-card">
-      <div class="device"><div class="screen">
-        <div class="mock-header"><div class="tag">Hatim takibi</div><h4 style="font-size:15px;">14. Cüz</h4></div>
-        <div class="mock-progress" style="margin-top:6px;"><i style="width:47%;"></i></div>
-        <div class="mock-verse" style="margin-top:18px;"><div class="tr" style="font-size:11px;">Günlük hedef: 4 sayfa<br/>Okuma serisi: 6 gün</div></div>
-      </div></div>
-      <div class="caption"><b>Hatim takibi</b><span>30 cüzü işaretle, tamamlanan hatimlerini arşivle.</span></div>
-    </article>
-    <article class="flow-card">
-      <div class="device"><div class="screen">
-        <div class="mk-prayer">
-          <div class="row"><span>İmsak</span><span>04:52</span></div>
-          <div class="row"><span>Güneş</span><span>06:21</span></div>
-          <div class="row now"><span>Öğle</span><span>13:08</span></div>
-          <div class="row"><span>İkindi</span><span>16:42</span></div>
-          <div class="row"><span>Akşam</span><span>19:47</span></div>
-        </div>
-      </div></div>
-      <div class="caption"><b>Namaz vakitleri</b><span>Şehir bazlı vakitler, tek dokunuşla hatırlatma.</span></div>
-    </article>
-    <article class="flow-card">
-      <div class="device"><div class="screen">
-        <div class="mk-qibla"><div class="dial"><div class="needle"></div></div></div>
-      </div></div>
-      <div class="caption"><b>Kıble pusulası</b><span>Konum ve sensörle Mekke’ye yön bulma.</span></div>
-    </article>
-    <article class="flow-card">
-      <div class="device"><div class="screen">
-        <div class="mk-dhikr">
-          <div class="ring"><i><span class="count">33</span></i></div>
-          <span style="font-size:11px;color:var(--ink2);font-weight:700;">ELHAMDÜLİLLAH</span>
-        </div>
-      </div></div>
-      <div class="caption"><b>Zikirmatik</b><span>Titreşimli sayaç, haftalık kişisel hedef.</span></div>
-    </article>
-    <article class="flow-card">
-      <div class="device"><div class="screen">
-        <div class="mk-board">
-          <div class="row"><span class="rank">1</span><span class="dot"></span><span class="name">Merve K.</span><span class="pt">812</span></div>
-          <div class="row me"><span class="rank">2</span><span class="dot"></span><span class="name">Sen</span><span class="pt">790</span></div>
-          <div class="row"><span class="rank">3</span><span class="dot"></span><span class="name">Ahmet Y.</span><span class="pt">754</span></div>
-          <div class="row"><span class="rank">4</span><span class="dot"></span><span class="name">Zehra T.</span><span class="pt">701</span></div>
-        </div>
-      </div></div>
-      <div class="caption"><b>Topluluk sıralaması</b><span>İsteğe bağlı; okuma ilerlemeni kıyasla.</span></div>
-    </article>
-  </div>
-</section>
 
 <section class="features" id="ozellikler">
   <div class="wrap">
@@ -438,7 +326,7 @@
         <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/tr-tr?size=250x83" alt="App Store" />
       </a>
       <a href="#" aria-label="Google Play'de yakında">
-        <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Google Play" style="height:56px;margin-top:-4px;" />
+        <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Google Play" />
       </a>
     </div>
     <p class="soon">Yakında</p>

@@ -5,7 +5,7 @@ const securityHeaders = {
   'X-Content-Type-Options': 'nosniff',
   'X-Frame-Options': 'DENY',
   'Referrer-Policy': 'strict-origin-when-cross-origin',
-  'Permissions-Policy': 'camera=(), microphone=(self), geolocation=(self), accelerometer=(self), gyroscope=(self), magnetometer=(self), on-device-speech-recognition=(self)',
+  'Permissions-Policy': 'camera=(), microphone=(), geolocation=(self), accelerometer=(self), gyroscope=(self), magnetometer=(self), on-device-speech-recognition=()',
 };
 export function withHeaders(response, path) {
   const result = new Response(response.body, response);

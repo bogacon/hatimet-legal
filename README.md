@@ -36,6 +36,8 @@ Cloudflare Pages önizleme alan adları `noindex` başlığı taşır. Asıl can
 
 ## Kontroller
 
-`npm test`: Worker güvenliği/izinli proxy, SQLite izolasyonu, derlenen tüm yerel link/varlıklar, sûre/dua sayıları, site haritası ve kapalı AdSense davranışı için 11 test. Ortak uygulama deposunda ayrıca 200 test, TypeScript ve ESLint vardır.
+`npm test`: Worker güvenliği/izinli proxy, SQLite izolasyonu, derlenen tüm yerel link/varlıklar, sûre/dua sayıları, site haritası ve kapalı AdSense davranışı için 12 test. Ortak uygulama deposunda ayrıca 195 test, TypeScript ve ESLint vardır.
 
 Mobil/web platform farkları ve yedekleme işleyişi özel uygulama deposunun `docs/WEB.md` dosyasındadır. Web'de takvim içe aktarma gerekir; kapalı tarayıcıda native push teslimi yoktur. Kişisel veriler açık yedekleme/geri yükleme ile taşınır; ortak hatim Realtime kullanır.
+
+16 Ekim güncellemesi: tüm SEO içerik başlıkları ve kartları ortak avlu tasarımını kullanır. Web/mobil mikrofonla okuma kaldırıldı; Worker mikrofon ve cihaz içi konuşma tanımayı Permissions-Policy ile engeller.

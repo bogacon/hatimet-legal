@@ -35,7 +35,7 @@ async function page(path, title, description, body, schema, noindex = false) {
   await writeFile(destination, layout({ title, description, path, body, schema, noindex }));
   if (!noindex) paths.push(path);
 }
-const content = (title, intro, html, parent) => `<div class="wrap content">${crumbs(title, parent)}<h1>${escape(title)}</h1><p class="intro">${escape(intro)}</p>${html}</div>`;
+const content = (title, intro, html, parent) => `<div class="wrap content">${crumbs(title, parent)}<header class="content-heading"><h1>${escape(title)}</h1><p class="intro">${escape(intro)}</p></header>${html}</div>`;
 const search = (label) => `<label class="search"><span aria-hidden="true">⌕</span><input type="search" data-search placeholder="${escape(label)}" aria-label="${escape(label)}"></label><p class="small" data-search-status aria-live="polite"></p>`;
 
 await stat(join(mobile, 'dist-web/index.html'));

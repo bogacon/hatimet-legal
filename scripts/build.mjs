@@ -2,6 +2,7 @@ import { readFile, writeFile, mkdir, cp, rm, stat } from 'node:fs/promises';
 import { resolve, join } from 'node:path';
 import { stripTypeScriptTypes } from 'node:module';
 import { prepareAdsense } from './adsense.mjs';
+import { createServiceWorker } from './service-worker.mjs';
 import { editorialPages } from './editorial-pages.mjs';
 const ads = prepareAdsense(JSON.parse(await readFile('config/adsense.json','utf8')));
 
@@ -103,10 +104,8 @@ const assets=await listAssets(out);
 const revisionHash=createHash('sha256');
 for(const asset of assets){revisionHash.update(asset);revisionHash.update(await readFile(join(out,asset)));}
 const revision=revisionHash.digest('hex').slice(0,12);
-await writeFile(join(out,'sw.js'),`const CACHE='hatimet-web-${revision}';const FILES=${json(['/',...assets])};
-self.addEventListener('install',event=>event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(FILES))));
-self.addEventListener('activate',event=>event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(key=>key.startsWith('hatimet-web-')&&key!==CACHE).map(key=>caches.delete(key))))));
-self.addEventListener('fetch',event=>{const url=new URL(event.request.url);if(event.request.method!=='GET'||url.origin!==self.location.origin||url.pathname.startsWith('/api/')||url.pathname==='/auth-callback'||url.pathname==='/sign-in'||url.pathname==='/reset-password')return;
-if(event.request.mode==='navigate'){event.respondWith(fetch(event.request).then(response=>{if(response.ok){const copy=response.clone();event.waitUntil(caches.open(CACHE).then(cache=>cache.put(event.request,copy)));}return response;}).catch(()=>caches.match(event.request).then(response=>response||caches.match('/')).then(response=>response||Response.error())));return;}
-if(FILES.includes(url.pathname))event.respondWith(caches.match(event.request).then(response=>response||fetch(event.request)));});
-`);
+const rootHtml=await readFile(join(out,'index.html'),'utf8');
+const core=[...new Set(['/',...Array.from(rootHtml.matchAll(/(?:src|href)="([^"?#]+\.(?:js|css))"/g),m=>m[1]),...assets.filter(p=>p.endsWith('.wasm') || /\/worker-[^/]+\.js$/.test(p) || /Ionicons[^/]*\.ttf$/.test(p))])];
+await writeFile(join(out,'sw.js'),createServiceWorker({revision,assets,core}));
+// The homepage hero is discovered before the JavaScript app is ready.
+await writeFile(join(out,'index.html'),rootHtml.replace('</head>','<link rel="preload" as="image" href="/media/serene-courtyard.jpg" fetchpriority="high"></head>'));

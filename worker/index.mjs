@@ -10,9 +10,9 @@ const securityHeaders = {
 export function withHeaders(response, path) {
   const result = new Response(response.body, response);
   for (const [key, value] of Object.entries(securityHeaders)) result.headers.set(key, value);
-  if (isApplicationPath(path)) {
+  if (isApplicationPath(path) || path.includes('/_expo/') || path.endsWith('.wasm')) {
     result.headers.set('Cross-Origin-Opener-Policy', 'same-origin');
-    result.headers.set('Cross-Origin-Embedder-Policy', 'credentialless');
+    result.headers.set('Cross-Origin-Embedder-Policy', 'require-corp');
     if (path !== '/') result.headers.set('X-Robots-Tag', 'noindex, follow');
   }
   if (path.includes('/_expo/') || path.endsWith('.wasm')) result.headers.set('Cache-Control', 'public, max-age=31536000, immutable');

@@ -1,0 +1,10 @@
+import { test } from 'node:test';
+import assert from 'node:assert/strict';
+import { handleRequest } from '../worker/index.mjs';
+const env={ASSETS:{fetch:async(request)=>new URL(request.url).pathname === '/'?new Response('<html>application</html>',{headers:{'Content-Type':'text/html'}}):new Response('missing',{status:404})}};
+test('application deep links receive the SQLite isolation headers and noindex',async()=>{const r=await handleRequest(new Request('https://hatimet.net/join/token'),env);assert.equal(r.status,200);assert.equal(r.headers.get('Cross-Origin-Opener-Policy'),'same-origin');assert.equal(r.headers.get('Cross-Origin-Embedder-Policy'),'credentialless');assert.match(await r.text(),/application/);assert.equal(r.headers.get('X-Robots-Tag'),'noindex, follow');});
+test('only district IDs can reach the fixed upstream',async()=>{for(const path of ['https://evil.test','12abc','../secrets','1234?url=evil']){const r=await handleRequest(new Request('https://hatimet.net/api/prayer/'+encodeURIComponent(path)),env,()=>assert.fail('Upstream called for invalid input'));assert.equal(r.status,400);}});
+test('upstream failures do not look like successful calendar data',async()=>{const r=await handleRequest(new Request('https://hatimet.net/api/prayer/9541'),env,async()=>new Response('no',{status:503}));assert.equal(r.status,502);});
+test('upstream HTML is served as text and has a bounded cache lifetime',async()=>{const r=await handleRequest(new Request('https://hatimet.net/api/prayer/9541'),env,async(url)=>{assert.equal(url,'https://namazvakitleri.diyanet.gov.tr/tr-TR/9541/x-icin-namaz-vakti');return new Response('<script>unsafe()</script>');});assert.equal(r.headers.get('Content-Type'),'text/plain; charset=utf-8');assert.equal(r.headers.get('Cache-Control'),'public, max-age=1800');});
+test('unknown content remains a real 404',async()=>{const r=await handleRequest(new Request('https://hatimet.net/missing'),env);assert.equal(r.status,404);});
+test('reject writes',async()=>{assert.equal((await handleRequest(new Request('https://hatimet.net/',{method:'POST'}),env)).status,405);});

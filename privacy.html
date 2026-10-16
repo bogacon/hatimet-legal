@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="tr">
 <head>
+<link rel="canonical" href="https://hatimet.net/gizlilik/">
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src 'self'; base-uri 'none'; form-action 'self' mailto:; frame-ancestors 'none'" />
@@ -77,6 +78,22 @@
   takibinde kullanılır. Ham ses kaydedilmez ve Hatim Et ya da Supabase sunucusuna
   gönderilmez.</p>
 
+  <h2>Web sitesinde misafir kullanım ve tarayıcı verileri</h2>
+  <p>Web sitesinin kişisel okuma ve ibadet araçları hesap açmadan kullanılabilir.
+  Misafir kayıtları tarayıcının yerel SQLite/OPFS alanında; tema ve dil gibi
+  tercihler de yerel veriler içinde saklanır. Tarayıcı verileri silindiğinde,
+  özel gezinme sona erdiğinde veya tarayıcı depolamayı temizlediğinde bu kayıtlar
+  kaybolabilir. Hesap açmak tek başına yerel kayıtları yedeklemez; kullanıcı
+  Profil bölümünden bulut yedeklemeyi başlatabilir veya verilerini dışa aktarabilir.</p>
+  <p>Web oturumunun Supabase kimlik doğrulama jetonları tarayıcı localStorage
+  alanında tutulur. Site kodu ve içerik dosyaları çevrimdışı erişim için service
+  worker önbelleğine alınabilir; kimlik doğrulama ve kişisel API yanıtları bu
+  önbelleğe alınmaz. Tarayıcı verilerinin silinmesi oturumu da kapatır.</p>
+  <p>Web’de sesli takip yalnız tarayıcının cihaz içi Arapça tanıma modeli varsa
+  çalışır; uzak konuşma servisine otomatik geçiş yapılmaz. Takvim dosyaları
+  kullanıcının tercihiyle indirilir ve ancak kullanıcının takvimine aktarmasıyla
+  o takvim hizmetinin veri işleme koşullarına tabi olur.</p>
+
   <h2>2. Bulut hesabı açıldığında</h2>
   <p>Kullanıcı isteğe bağlı bulut hesabı açarsa aşağıdaki veriler Supabase üzerinde
   hesap kimliğiyle bağlantılı olarak işlenebilir:</p>
@@ -87,7 +104,8 @@
     <li>topluluk sıralamasına katılım ve uygulama etkinlik puanı;</li>
     <li>kullanıcı izin verdiğinde, uzaktan bildirim gönderebilmek için hesaba bağlı
       Expo push tokenı, cihaz platformu ve seçilen uygulama dili;</li>
-    <li>isteğe bağlı cihaz yedeği: uygulama ayarları, hatim/cüz ilerlemesi ve
+    <li>isteğe bağlı cihaz yedeği: uygulama ayarları, okuma konumu ve oturumları, favoriler, hatim/cüz
+      ilerlemesi, namaz günlüğü, kaza takibi, quiz sonuçları, grup planları ve
       zikirmatik oturumları.</li>
   </ul>
   <p>Bu yedekler dinî veya felsefî inançlara ilişkin çıkarım yapılmasına elverişli
@@ -131,7 +149,7 @@
 
   <h2>6. Paylaşım, satış ve reklam</h2>
   <p>Kişisel veri satılmaz. Uygulama kullanıcıları uygulamalar veya internet siteleri
-  arasında takip etmez. Şu anki sürümde reklam SDK'sı yapılandırılmamıştır.
+  arasında takip etmez. Şu anki sürümde reklam gösterimi ve AdSense veri aktarımı kapalıdır; bir yayıncı hesabı bağlı değildir. Web sitesinde teknik reklam bağlantı altyapısı bulunması reklam isteği gönderildiği anlamına gelmez.
   Gelecekte reklam eklenirse bu politika, izin akışı ve mağaza gizlilik beyanları
   yayın öncesinde yeniden güncellenir.</p>
 

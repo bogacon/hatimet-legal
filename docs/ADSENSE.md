@@ -18,3 +18,11 @@ Resmî kaynaklar:
 - https://support.google.com/adsense/answer/12131223
 - https://support.google.com/adsense/answer/12171612
 - https://support.google.com/adsense/answer/13554116
+
+## İnceleme öncesi sahiplik doğrulaması
+
+Reklam göstermeden siteyi doğrulamak desteklenir: yalnız gerçek `publisherId` alanını doldurun, `enabled:false` kalsın. Build ana sayfanın ve içerik sayfalarının head bölümüne doğrulama metası ve kökte gerçek ads.txt satırını ekler; reklam betiği veya boş yerleşim üretmez. Slot ve CMP yalnız reklam gösterimi etkinleştirileceği zaman gerekir. Hesap olmadan ID, onay durumu veya kimlik doğrulaması uydurulmaz.
+
+Google sayfaların özgün değerini, kullanılabilirliğini ve politikaya uygunluğunu inceler; bu teknik hazırlık kabul kararı değildir. Kişisel ibadet ekranları reklam hedefleme/yerleşimi için kullanılmaz. Mevcut yayıncı kimliği olmadığı için hesapta site ekleme, sahiplik doğrulama, inceleme isteği ve Google Privacy & messaging/CMP mesajı etkinleştirme sonradan hesap sahibi tarafından tamamlanmalıdır.
+
+Güncel resmî doğrulama rehberi: https://support.google.com/adsense/answer/7584263

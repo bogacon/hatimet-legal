@@ -10,3 +10,11 @@ test('activation fails without real identifiers and a verified CMP',()=>{
  const ads=prepareAdsense({enabled:true,publisherId:'ca-pub-1234567890123456',contentSlotId:'1234567890',cmpReady:true});
  assert.match(ads.adsTxt,/pub-1234567890123456, DIRECT/);assert.match(ads.placement,/aria-label="Reklam"/);
 });
+
+test('site ownership can be verified before ad slots and consent integration are activated',()=>{
+ const ads=prepareAdsense({enabled:false,publisherId:'ca-pub-1234567890123456'});
+ assert.match(ads.verificationHead,/google-adsense-account/);
+ assert.equal(ads.head,ads.verificationHead);assert.equal(ads.placement,'');
+ assert.ok(!ads.head.includes('<script'));assert.match(ads.adsTxt,/pub-1234567890123456, DIRECT/);
+ assert.throws(()=>prepareAdsense({enabled:false,publisherId:'fake'}));
+});

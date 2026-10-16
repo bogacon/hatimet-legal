@@ -1,0 +1,4 @@
+Contact: mailto:bogacondalikoglu@gmail.com
+Expires: 2027-04-16T00:00:00Z
+Canonical: https://hatimet.net/.well-known/security.txt
+Preferred-Languages: tr, en

@@ -1,6 +1,7 @@
 {
   "enabled": false,
-  "publisherId": "",
+  "publisherId": "ca-pub-2026830697384470",
   "contentSlotId": "",
-  "cmpReady": false
+  "cmpReady": false,
+  "connectScript": true
 }

@@ -31,17 +31,17 @@ Cloudflare Pages önizleme alan adları `noindex` başlığı taşır. Asıl can
 
 - 114 tam sûre, 54 dua, yedi namaz rehberi, isimler, takvim ve kaynak sayfaları statik HTML olarak üretilir; metinler mobil içerik kaynaklarından gelir.
 - Canonical, açıklama, OG/WebPage schema, sitemap, robots ve gerçek 404 vardır. Kişisel ekranlar `noindex` olur. Türkçe statik sayfalara sahte hreflang eklenmez.
-- AdSense kapalı ve bağlanmaya hazırdır. Gerçek yayıncı kimliği bulunmaz. Ayrıntılar: [docs/ADSENSE.md](docs/ADSENSE.md).
+- AdSense site bağlantı kodu `ca-pub-2026830697384470` ile eklenmiştir. Reklam gösterimi kapalıdır; Google betiğinden önce `pauseAdRequests=1` uygulanır. Ayrıntılar: [docs/ADSENSE.md](docs/ADSENSE.md).
 - Sitemap/teknik hazırlık arama sıralaması veya AdSense onayı garantisi değildir. Search Console doğrulaması ve gerçek AdSense hesap süreci site sahibinin hesabıyla tamamlanmalıdır.
 
 ## Kontroller
 
-`npm test`: Worker güvenliği/izinli proxy, SQLite izolasyonu, derlenen tüm yerel link/varlıklar, sûre/dua sayıları, site haritası ve kapalı AdSense davranışı için 16 test. Ortak uygulama deposunda ayrıca 196 test, TypeScript ve ESLint vardır.
+`npm test`: Worker güvenliği/izinli proxy, SQLite izolasyonu, derlenen tüm yerel link/varlıklar, sûre/dua sayıları, site haritası ve kapalı AdSense davranışı için 19 test. Ortak uygulama deposunda ayrıca 196 test, TypeScript ve ESLint vardır.
 
 Mobil/web platform farkları ve yedekleme işleyişi özel uygulama deposunun `docs/WEB.md` dosyasındadır. Web'de takvim içe aktarma gerekir; kapalı tarayıcıda native push teslimi yoktur. Kişisel veriler açık yedekleme/geri yükleme ile taşınır; ortak hatim Realtime kullanır.
 
 16 Ekim güncellemesi: tüm SEO içerik başlıkları ve kartları ortak avlu tasarımını kullanır. Web/mobil mikrofonla okuma kaldırıldı; Worker mikrofon ve cihaz içi konuşma tanımayı Permissions-Policy ile engeller.
 
-AdSense sahipliği reklam göstermeden doğrulanabilir: gerçek publisherId girildiğinde meta ve ads.txt üretilir; reklamlar disabled kalabilir. Kullanım rehberi, iletişim, çerez/depolama açıklaması ve RFC 9116 security.txt üretim paketindedir. Google kabul kararı hesap/site incelemesine bağlıdır.
+AdSense sahipliği için kullanıcıdan alınan gerçek yayıncı kimliğiyle meta, async bağlantı betiği ve ads.txt üretilir; reklam istekleri duraklatılır. Kullanım rehberi, iletişim, çerez/depolama açıklaması ve RFC 9116 security.txt üretim paketindedir. Google kabul kararı hesap/site incelemesine bağlıdır.
 
 Açılış performansı: service worker yalnız ana sayfanın çekirdek dosyalarını önceden yükler; diğer sayfalar ve görseller kullanıldıkça önbelleğe girer. Kayıt/giriş, parola yenileme ve API istekleri bu önbelleğin dışındadır. Ana kapak görseli HTML içinde preload edilir.

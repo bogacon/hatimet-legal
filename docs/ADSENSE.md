@@ -1,28 +1,29 @@
-# AdSense bağlantısına hazırlık
+# AdSense bağlantısı — 17 Ekim 2026
 
-Mevcut sürümde `config/adsense.json` kapalıdır. Yayıncı hesabı yoktur; site hiçbir Google reklam kodu yüklemez, reklam isteği yapmaz, boş reklam kutusu göstermez. `ads.txt` yalnız açıklama içerir; uydurma yayıncı satırı yoktur. Reklam altyapısı SEO puanı veya AdSense kabulü garantisi değildir.
+Kullanıcının sağladığı yayıncı kimliği: `ca-pub-2026830697384470`. Doğru yayıncı hesabı Google panelinde açıldı; hatimet.net site sahipliği kod ile doğrulandı ve inceleme talebi gönderildi. Panel durumu “Hazırlanıyor / İnceleme istendi”; reklam gösterimi onaylanmış değildir.
 
-Hesap oluşturulduktan ve site Google tarafından uygun bulunduğunda:
+## Site tarafında uygulananlar
 
-1. AdSense hesabında hatimet.net sitesini ekleyin. Hesaptaki gerçek `ca-pub-` kimliğini ve duyarlı içerik reklam biriminin slot kimliğini alın.
-2. Gizlilik metnini gerçek sağlayıcılar ve işlemlerle güncelleyin. İlgili bölgeler için Google sertifikalı CMP kurun. Bu depodaki olay dinleyicisi bir CMP değildir.
-3. CMP'nin güncel, bölgeye uygun izin kararından sonra `window.dispatchEvent(new Event('hatimet:ads-permitted'))` çağıracak entegrasyonu yapın. Bu olay site yüklenişinde veya sıradan bir “kabul” butonuyla kendiliğinden gönderilmez. İzin geri çekildiğinde reklam isteklerini durdurun ve sayfayı yenileyin. Google'ın gerektirdiği izin sinyallerini CMP sağlayıcısının resmi entegrasyonu ile gönderin.
-4. `config/adsense.json` içindeki gerçek kimlikleri doldurun; yalnız CMP kurulumunu doğruladıktan sonra `cmpReady` ve `enabled` değerlerini `true` yapın. Yeniden build alın. Geçersiz/eksik kimlik veya CMP beyanı build'i durdurur.
-5. `/ads.txt`, hesap doğrulama metası, onay durumu ve izin verilmeden reklam isteği gitmediğini tarayıcı ağ panelinde doğrulayın. Reddedilen/geri çekilen izin ve mobil görünümü de kontrol edin.
+`config/adsense.json`: `connectScript:true`, gerçek `publisherId`, `enabled:false`, `cmpReady:false`. Ana sayfanın ve herkese açık içerik sayfalarının head alanında kullanıcının verdiği async/crossorigin betiği vardır. Ondan önce `window.adsbygoogle.pauseAdRequests=1` uygulanır. Sahiplik metası ve `/ads.txt` de aynı kimliği taşır. Noindex 404 ve doğrudan açılan giriş/parola/kişisel ekranlarda bağlantı betiği eklenmez. Ana sayfadan SPA gezinmesinde önceden yüklenen betik duraklatılmış kalır.
 
-Yerleşimler: yalnız herkese açık namaz rehberi ve isimler sayfalarının sonunda tek, “Reklam” etiketli duyarlı alan. Sabitlenmiş reklam, sahte indirme, yönlendirme butonu, etkileşimli okuyucu, giriş, günlük ve kişisel istatistik ekranlarında reklam yoktur. Alan içerikten ayrılır ve kaymayı azaltmak için yer ayırır.
+Reklam birimi oluşturulmaz, otomatik reklamlar açılmaz, boş reklam kutusu eklenmez. Site Google onayı alınmış gibi gösterilmez. Betiğin indirilmesi Google ile ağ bağlantısı oluşturur; bu nedenle gizlilik ve çerez açıklamaları güncellenmiştir. Google’ın belgesine göre duraklatmada mevcut Google çerezleri okunabilir fakat yeni reklam çerezleri ayarlanmaz; mevcut çerez bilgileri reklam sunumu/ölçümü için kullanılmaz. Duraklatma mekanizması sertifikalı CMP değildir.
 
-Otomatik reklamları açmak, sayfalara rastgele reklam koymak ve kişisel ibadet verileriyle reklam hedeflemek bu entegrasyonun kapsamında değildir.
+İletişim, hakkımızda, kullanım rehberi, lisans/kaynaklar, gizlilik, çerez açıklamaları ve gerçek 404 erişilebilirdir. Gizlilik/destek sayfalarının iç içe URL’lerde yanlış yere giden göreli bağlantıları düzeltildi. Site haritası 190 URL içerir; robots.txt içerik taramasını engellemez. İçerik lisansları ve kaynak bağlantıları korunur. Bu hazırlık Google kabulü garantisi değildir.
 
-Resmî kaynaklar:
-- https://support.google.com/adsense/answer/12131223
-- https://support.google.com/adsense/answer/12171612
-- https://support.google.com/adsense/answer/13554116
+## Doğru hesaptan tamamlanması gerekenler
 
-## İnceleme öncesi sahiplik doğrulaması
+1. `hatimet.net` sitesinin yayıncı kimliğiyle aynı AdSense hesabında bulunduğunu doğrulayın. Siteler bölümünde sahiplik kontrolünü yapın ve mevcut durum izin veriyorsa inceleme isteyin. Sunucuya eklenen kod bu düğmelere basıldığı anlamına gelmez.
+2. Gizlilik ve mesajlaşma bölümünde ilgili bölgeler için Google sertifikalı CMP mesajını yapılandırıp yayımlayın. Site gizlilik URL’si `https://hatimet.net/gizlilik/`; kullanıcıya ret, seçim ve geri çekme yolları sağlayın. Gerçek CMP/TCF sinyalleri test edilmeden `cmpReady` değerini değiştirmeyin.
+3. Google onayı, gerçek reklam birimi/slot kimliği ve test edilmiş izin entegrasyonu tamamlandıktan sonra `enabled:true` kullanın. Mevcut `/adsense.js` dinleyicisine yalnız gerçek CMP’nin güncel ve bölgeye uygun kararıyla `hatimet:ads-permitted` olayı gönderilebilir. Sıradan bir kabul düğmesi sertifikalı CMP yerine geçmez. İzin geri çekilmesi ve izin reddi ayrıca doğrulanmalıdır.
+4. Aktif yerleşimler yalnız seçilmiş kamusal içerik alanlarındadır; okuyucu, giriş, günlük ve kişisel istatistik ekranlarına reklam yerleştirmeyin. Kişisel ibadet verileriyle reklam hedeflemeyin.
 
-Reklam göstermeden siteyi doğrulamak desteklenir: yalnız gerçek `publisherId` alanını doldurun, `enabled:false` kalsın. Build ana sayfanın ve içerik sayfalarının head bölümüne doğrulama metası ve kökte gerçek ads.txt satırını ekler; reklam betiği veya boş yerleşim üretmez. Slot ve CMP yalnız reklam gösterimi etkinleştirileceği zaman gerekir. Hesap olmadan ID, onay durumu veya kimlik doğrulaması uydurulmaz.
+17 Ekim’de kullanıcının açtığı doğru yayıncı hesabından kod doğrulaması ve inceleme isteği tamamlandı. Yeni hesap veya sözleşme oluşturulmadı; ödeme ayarları ve diğer alan adları değiştirilmedi. hatimet.net için mevcut Google Avrupa tüzükleri mesajı düzenlenerek yayımlandı: varsayılan dil Türkçe, izin vermeme düğmesi tüm bölgelerde açık, izin vermeden kapatma açık, otomatik mesaj optimizasyonu kapalı; yalnız hatimet.net seçili. Site adı Hatim Et, gizlilik bağlantısı https://hatimet.net/gizlilik/ olarak düzeltildi. Google mesajın görünmesinin bir saati bulabileceğini bildirir. Bölgesel gerçek ziyaretçi/ret/geri çekme kabul testi ve aktif reklam gösterimi henüz yapılmadığı için `cmpReady:false` korundu. Google, mesajı gösterdiği ziyaretçilere izin geri alma bağlantısını otomatik ekler.
 
-Google sayfaların özgün değerini, kullanılabilirliğini ve politikaya uygunluğunu inceler; bu teknik hazırlık kabul kararı değildir. Kişisel ibadet ekranları reklam hedefleme/yerleşimi için kullanılmaz. Mevcut yayıncı kimliği olmadığı için hesapta site ekleme, sahiplik doğrulama, inceleme isteği ve Google Privacy & messaging/CMP mesajı etkinleştirme sonradan hesap sahibi tarafından tamamlanmalıdır.
+## Resmî kaynaklar
 
-Güncel resmî doğrulama rehberi: https://support.google.com/adsense/answer/7584263
+- [Site bağlantısı ve inceleme](https://support.google.com/adsense/answer/7584263)
+- [Google etiketlerinde reklam isteğini duraklatma](https://support.google.com/adsense/answer/7670312)
+- [ads.txt](https://support.google.com/adsense/answer/12171612)
+- [CMP gereklilikleri](https://support.google.com/adsense/answer/13554020)
+- [Gizlilik açıklamasında gereken içerik](https://support.google.com/adsense/answer/1348695)
+- [İçerik ve kullanılabilirlik değerlendirmesi](https://support.google.com/adsense/answer/7299563)

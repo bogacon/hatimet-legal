@@ -42,3 +42,7 @@ Mevcut Türkçe çeviriyazı paketinin metadata’sı ve uygulama kaynak belgesi
 - [Google: Çok bölgeli siteler](https://developers.google.com/search/docs/specialty/international/managing-multi-regional-sites?hl=tr)
 - [Google: Site haritası](https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap)
 - [Tanzil çeviri kullanım şartları](https://tanzil.net/trans/)
+
+## Tamamlanan DNS ve Google doğrulaması
+
+18 Ekim 2026’da DNS Cloudflare’a taşındı, DNSSEC etkin kaldı, mevcut dokuz e-posta kaydı korundu. Search Console sahipliği doğrulandı ve sitemap Başarılı / 192 keşfedilen URL durumuna ulaştı. Ayrıntılar [DNS yayını](DNS.md) belgesindedir.

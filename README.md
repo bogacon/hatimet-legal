@@ -51,3 +51,5 @@ Açılış performansı: service worker yalnız ana sayfanın çekirdek dosyalar
 Site haritası 192 standart URL içerir. Ana sayfada JavaScript öncesi okunabilir içerik ile çalışan arayüzde aynı kaynak kartları sunulur. 114 sûre ve 54 dua için benzersiz başlık/açıklama, içerik yolu ve katalog verileri üretilir. `/hatim-takibi/` ve `/kuran-okuma-rehberi/` özgün kullanım rehberleridir. Namaz vakitleri sayfası 81 ilin resmî kaynaklarını listeler; sabit veya uydurma günlük vakitler yayımlamaz.
 
 Ayrıntılar: [Türkiye SEO](docs/SEO_TURKIYE.md). `npm test` derleme sonrası tüm sitemap URL'lerinin temel SEO tutarlılığını da denetler.
+
+Alan adı DNS/SSL ve Google doğrulaması tamamlandı; operasyon ayrıntıları [DNS yayını](docs/DNS.md) belgesinde bulunur.

@@ -1,3 +1,13 @@
+const publicSections=new Set(['kuran','dualar','namaz-rehberi','namaz-vakitleri','zikir-sayaci','dini-gunler','isimler','kaynaklar','hakkimizda','kullanim-rehberi','iletisim','cerez-politikasi','gizlilik','destek','hatim-takibi','kuran-okuma-rehberi']);
+export function canonicalPublicPath(path) {
+ if(path==='/index.html')return '/';
+ const section=path.split('/')[1]?.replace(/\.html$/,'');
+ if(!publicSections.has(section))return path;
+ if(path.endsWith('/index.html'))return path.slice(0,-10);
+ if(path.endsWith('.html'))return path.slice(0,-5)+'/';
+ if(!path.endsWith('/')&&!/\.[a-z0-9]+$/i.test(path))return path+'/';
+ return path;
+}
 export function isApplicationPath(path) {
   return path === '/' || new Set(['quran','hatim','prayer','duas','zikirmatik','explore','qibla','prayer-journal','kaza','prayer-guide','imsakiye','religious-days','mosques','quiz','knowledge','baby-names','funeral','bookmarks','streak','leaderboard','profile','privacy','legal','sign-in','onboarding','reader','city-picker','auth-callback','reset-password','home-settings','prayer-settings','notification-settings','language','avatar','group','group-create','_sitemap','join','dua','dua-category','religious-day','(tabs)']).has(path.split('/')[1]);
 }
@@ -15,6 +25,7 @@ export function withHeaders(response, path) {
     result.headers.set('Cross-Origin-Embedder-Policy', 'require-corp');
     if (path !== '/') result.headers.set('X-Robots-Tag', 'noindex, follow');
   }
+  if(path==='/seo-inventory.json'||/^\/google[a-f0-9]+\.html$/.test(path))result.headers.set('X-Robots-Tag','noindex, follow');
   if (path.includes('/_expo/') || path.endsWith('.wasm')) result.headers.set('Cache-Control', 'public, max-age=31536000, immutable');
   else if (!path.startsWith('/api/')) result.headers.set('Cache-Control', 'public, max-age=0, must-revalidate');
   return result;
@@ -23,7 +34,13 @@ export function withHeaders(response, path) {
 export async function handleRequest(request, env, fetchUpstream = fetch) {
   const url = new URL(request.url);
   if (!['GET', 'HEAD'].includes(request.method)) return new Response('Method not allowed', { status: 405, headers: { Allow: 'GET, HEAD' } });
-  if (url.hostname === 'www.hatimet.net') { url.hostname = 'hatimet.net'; return Response.redirect(url.href, 301); }
+  const canonicalPath=canonicalPublicPath(url.pathname);
+  if(url.hostname==='www.hatimet.net'||(['hatimet.net','www.hatimet.net'].includes(url.hostname)&&url.protocol==='http:')||canonicalPath!==url.pathname){
+    if(url.hostname==='www.hatimet.net')url.hostname='hatimet.net';
+    if(url.hostname==='hatimet.net')url.protocol='https:';
+    url.pathname=canonicalPath;
+    return Response.redirect(url.href,301);
+  }
   if (url.pathname.startsWith('/api/prayer/')) {
     const id = url.pathname.slice('/api/prayer/'.length);
     if (!/^\d{4,6}$/.test(id)) return new Response('Invalid district', { status: 400 });

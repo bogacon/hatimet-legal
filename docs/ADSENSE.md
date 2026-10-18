@@ -8,7 +8,7 @@ Kullanıcının sağladığı yayıncı kimliği: `ca-pub-2026830697384470`. Do�
 
 Reklam birimi oluşturulmaz, otomatik reklamlar açılmaz, boş reklam kutusu eklenmez. Site Google onayı alınmış gibi gösterilmez. Betiğin indirilmesi Google ile ağ bağlantısı oluşturur; bu nedenle gizlilik ve çerez açıklamaları güncellenmiştir. Google’ın belgesine göre duraklatmada mevcut Google çerezleri okunabilir fakat yeni reklam çerezleri ayarlanmaz; mevcut çerez bilgileri reklam sunumu/ölçümü için kullanılmaz. Duraklatma mekanizması sertifikalı CMP değildir.
 
-İletişim, hakkımızda, kullanım rehberi, lisans/kaynaklar, gizlilik, çerez açıklamaları ve gerçek 404 erişilebilirdir. Gizlilik/destek sayfalarının iç içe URL’lerde yanlış yere giden göreli bağlantıları düzeltildi. Site haritası 190 URL içerir; robots.txt içerik taramasını engellemez. İçerik lisansları ve kaynak bağlantıları korunur. Bu hazırlık Google kabulü garantisi değildir.
+İletişim, hakkımızda, kullanım rehberi, lisans/kaynaklar, gizlilik, çerez açıklamaları ve gerçek 404 erişilebilirdir. Gizlilik/destek sayfalarının iç içe URL’lerde yanlış yere giden göreli bağlantıları düzeltildi. Site haritası 192 URL içerir; robots.txt içerik taramasını engellemez. İçerik lisansları ve kaynak bağlantıları korunur. Bu hazırlık Google kabulü garantisi değildir.
 
 ## Doğru hesaptan tamamlanması gerekenler
 

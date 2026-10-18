@@ -45,3 +45,9 @@ Mobil/web platform farkları ve yedekleme işleyişi özel uygulama deposunun `d
 AdSense sahipliği için kullanıcıdan alınan gerçek yayıncı kimliğiyle meta, async bağlantı betiği ve ads.txt üretilir; reklam istekleri duraklatılır. Kullanım rehberi, iletişim, çerez/depolama açıklaması ve RFC 9116 security.txt üretim paketindedir. Google kabul kararı hesap/site incelemesine bağlıdır.
 
 Açılış performansı: service worker yalnız ana sayfanın çekirdek dosyalarını önceden yükler; diğer sayfalar ve görseller kullanıldıkça önbelleğe girer. Kayıt/giriş, parola yenileme ve API istekleri bu önbelleğin dışındadır. Ana kapak görseli HTML içinde preload edilir.
+
+## Türkiye SEO — 18 Ekim 2026
+
+Site haritası 192 standart URL içerir. Ana sayfada JavaScript öncesi okunabilir içerik ile çalışan arayüzde aynı kaynak kartları sunulur. 114 sûre ve 54 dua için benzersiz başlık/açıklama, içerik yolu ve katalog verileri üretilir. `/hatim-takibi/` ve `/kuran-okuma-rehberi/` özgün kullanım rehberleridir. Namaz vakitleri sayfası 81 ilin resmî kaynaklarını listeler; sabit veya uydurma günlük vakitler yayımlamaz.
+
+Ayrıntılar: [Türkiye SEO](docs/SEO_TURKIYE.md). `npm test` derleme sonrası tüm sitemap URL'lerinin temel SEO tutarlılığını da denetler.

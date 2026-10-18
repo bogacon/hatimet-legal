@@ -10,3 +10,13 @@ test('unknown content remains a real 404',async()=>{const r=await handleRequest(
 test('reject writes',async()=>{assert.equal((await handleRequest(new Request('https://hatimet.net/',{method:'POST'}),env)).status,405);});
 
 test('microphone and speech recognition are blocked on reader and app pages',async()=>{for(const path of ['/reader','/quran','/sign-in']){const r=await handleRequest(new Request('https://hatimet.net'+path),env);assert.match(r.headers.get('Permissions-Policy'),/microphone=\(\)/);assert.match(r.headers.get('Permissions-Policy'),/on-device-speech-recognition=\(\)/);}});
+
+test('public URL variants converge on the same HTTPS apex canonical while retaining query values',async()=>{
+ for(const [input,expected] of [
+  ['http://www.hatimet.net/kuran/index.html?source=search','https://hatimet.net/kuran/?source=search'],
+  ['https://hatimet.net/kuran/1-fatiha-suresi.html','https://hatimet.net/kuran/1-fatiha-suresi/'],
+  ['https://hatimet.net/hatim-takibi','https://hatimet.net/hatim-takibi/'],
+  ['https://hatimet.net/index.html','https://hatimet.net/'],
+ ]){const r=await handleRequest(new Request(input),env);assert.equal(r.status,301,input);assert.equal(r.headers.get('Location'),expected,input);}
+});
+test('application routes retain their original path and noindex, without canonical redirects',async()=>{const r=await handleRequest(new Request('https://hatimet.net/reader?surah=1&ayah=7'),env);assert.equal(r.status,200);assert.equal(r.headers.get('X-Robots-Tag'),'noindex, follow');});

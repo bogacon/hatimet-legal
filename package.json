@@ -1,0 +1,14 @@
+{
+  "name": "hatimet-web",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "preview": "node scripts/preview.mjs",
+    "deploy": "wrangler deploy",
+    "cf:whoami": "wrangler whoami"
+  },
+  "devDependencies": { "wrangler": "^4.0.0" }
+}

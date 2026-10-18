@@ -59,7 +59,11 @@ export async function handleRequest(request, env, fetchUpstream = fetch) {
   if (url.pathname.startsWith('/api/')) return new Response('Not found', { status: 404 });
   if (url.pathname === '/privacy.html') return Response.redirect(`${url.origin}/gizlilik/`, 301);
   if (url.pathname === '/support.html') return Response.redirect(`${url.origin}/destek/`, 301);
-  let response = await env.ASSETS.fetch(request);
+  // Pages normalizes .html URLs. Verification endpoints must answer directly at
+  // Google's exact file URL, so request its clean asset path internally.
+  const assetUrl = new URL(request.url);
+  if (/^\/google[a-f0-9]+\.html$/.test(url.pathname)) assetUrl.pathname = url.pathname.slice(0,-5);
+  let response = await env.ASSETS.fetch(new Request(assetUrl, request));
   if (response.status === 404 && isApplicationPath(url.pathname) && !/\.[a-z0-9]+$/i.test(url.pathname)) {
     // Dynamic invitations and content IDs must hydrate the Expo Router shell on refresh.
     const shell = new URL('/', url);

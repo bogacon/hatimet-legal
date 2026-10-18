@@ -20,3 +20,8 @@ test('public URL variants converge on the same HTTPS apex canonical while retain
  ]){const r=await handleRequest(new Request(input),env);assert.equal(r.status,301,input);assert.equal(r.headers.get('Location'),expected,input);}
 });
 test('application routes retain their original path and noindex, without canonical redirects',async()=>{const r=await handleRequest(new Request('https://hatimet.net/reader?surah=1&ayah=7'),env);assert.equal(r.status,200);assert.equal(r.headers.get('X-Robots-Tag'),'noindex, follow');});
+
+test('Google verification HTML is served directly despite Pages clean URL normalization',async()=>{
+ const assets={ASSETS:{fetch:async request=>{const path=new URL(request.url).pathname;return path.endsWith('.html')?Response.redirect('https://hatimet.net/google24b7eeb02389a427',308):new Response('google-site-verification: google24b7eeb02389a427.html');}}};
+ const r=await handleRequest(new Request('https://hatimet.net/google24b7eeb02389a427.html'),assets);assert.equal(r.status,200);assert.match(await r.text(),/^google-site-verification:/);assert.equal(r.headers.get('X-Robots-Tag'),'noindex, follow');
+});
